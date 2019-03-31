@@ -73,7 +73,7 @@ static void MerkleComputation(const std::vector<uint256>& leaves, uint256* proot
         return;
     }
     bool is_mutable = flags & MERKLE_COMPUTATION_MUTABLE;
-    auto MerkleHash = MerkleHash_Hash256;
+    void (*MerkleHash)(uint256&, const uint256&, const uint256&) = MerkleHash_Hash256;
     if (flags & MERKLE_COMPUTATION_FAST) {
         MerkleHash = MerkleHash_Sha256Midstate;
     }
